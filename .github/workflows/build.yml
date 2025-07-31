@@ -28,7 +28,16 @@ jobs:
           cp -Rf REPO/usr REPO/DEBIAN PKG_SOURCE
           dpkg-deb --build PKG_SOURCE ${GITHUB_REPO_NAME}.deb
 
-      - name: Release the Package
-        uses: softprops/action-gh-release@v1
-        with:
-          files: ${GITHUB_REPO_NAME}.deb
+      - name: Purge old build
+        continue-on-error: true
+        run: gh release delete continuous --cleanup-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Very important stage
+        continue-on-error: true
+        run: |
+          sleep 20s
+      - name: Push new build
+        run: gh release create continuous --generate-notes --prerelease --title "Continuous Build" *.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
