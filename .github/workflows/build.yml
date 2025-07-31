@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir PKG_SOURCE
           cp -Rf usr DEBIAN PKG_SOURCE
-          dpkg-deb --build PKG_SOURCE ${GITHUB_REPO_NAME}.deb
+          dpkg-deb --build PKG_SOURCE geossh.deb
 
       - name: Purge old build
         continue-on-error: true
