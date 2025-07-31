@@ -23,7 +23,7 @@ jobs:
           mkdir PKG_SOURCE
           cp -Rf REPO/usr REPO/DEBIAN PKG_SOURCE
           sed -i 's/^Package: .*/Package: ${GITHUB_REPO_NAME}/' PKG_SOURCE/DEBIAN/control
-          sed -i 's/^Version: .*/Version: $(echo "${GITHUB_REF_NAME}" | sed -e 's/^v//')/' PKG_SOURCE/DEBIAN/control
+          sed -i 's/^Version: .*/Version: ${GITHUB_REF#refs/tags/v}/' PKG_SOURCE/DEBIAN/control
           dpkg-deb --build PKG_SOURCE ${GITHUB_REPO_NAME}.deb
 
       - name: Release the Package
