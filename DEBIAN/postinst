@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+# Добавляем правило в hosts.deny (если его нет)
+if ! grep -Fxq "sshd: ALL" /etc/hosts.deny; then
+    echo "sshd: ALL" >> /etc/hosts.deny
+fi
+
+# Добавляем правило в hosts.allow (если его нет)
+if ! grep -Fxq "sshd: ALL: aclexec /usr/local/bin/ipfilter.sh %a" /etc/hosts.allow; then
+    echo "sshd: ALL: aclexec /usr/local/bin/ipfilter.sh %a" >> /etc/hosts.allow
+fi
+
+exit 0

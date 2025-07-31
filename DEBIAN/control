@@ -1,0 +1,7 @@
+Package: geossh
+Version: 1.0
+Architecture: all
+Maintainer: CrazyAlex25 <crazyalex25@mail.ru>
+Depends: openssh-server, geoip-database, geoip-bin
+Description: IP Filter for SSH with hosts.deny/hosts.allow integration
+ Script to filter SSH connections using hosts.deny/hosts.allow.

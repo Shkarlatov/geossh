@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+sed -i '/^sshd: ALL$/d' /etc/hosts.deny
+sed -i '/^sshd: ALL: aclexec \/usr\/local\/bin\/ipfilter.sh %a$/d' /etc/hosts.allow
+
+if [ -f /usr/local/bin/ipfilter.sh ]; then
+    rm -f /usr/local/bin/ipfilter.sh
+fi
+
+exit 0
