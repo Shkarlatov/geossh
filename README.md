@@ -17,6 +17,6 @@ This package provides a GeoIP-based SSH access filter for Ubuntu, allowing you t
 
 ## Configuration
 
-Edit `/usr/local/bin/ipfilter.sh` to set:
-- `ALLOW_COUNTRIES` - space-separated list of allowed country codes (e.g., "CH DE US")
+Edit `/etc/geossh.conf` to set:
+- `ALLOW_COUNTRIES` - space-separated list of allowed country codes (e.g., "US DE CH")
 - `ALLOW_IPS` - space-separated list of whitelisted IP addresses (default 127.0.0.1)

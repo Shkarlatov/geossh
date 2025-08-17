@@ -1,10 +1,14 @@
 #!/bin/bash
 # License: WTFPL
 
-# UPPERCASE space-separated country codes to ACCEPT
-ALLOW_COUNTRIES="RU"
-LOGDENY_FACILITY="authpriv.notice"
-ALLOW_IPS="127.0.0.1"
+# Load config file
+CONFIG_FILE="/etc/geossh.conf"
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "Config file $CONFIG_FILE not found" 1>&2
+    exit 0
+fi
 
 if [ $# -ne 1 ]; then
   echo "Usage:  `basename $0` " 1>&2

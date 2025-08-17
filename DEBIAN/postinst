@@ -11,4 +11,9 @@ if ! grep -Fxq "sshd: ALL: aclexec /usr/local/bin/ipfilter.sh %a" /etc/hosts.all
     echo "sshd: ALL: aclexec /usr/local/bin/ipfilter.sh %a" >> /etc/hosts.allow
 fi
 
+if [ ! -e /etc/geossh.conf ]; then
+    cp /etc/geossh.conf.dpkg-new /etc/geossh.conf 2>/dev/null || true
+fi
+chmod 644 /etc/geossh.conf
+
 exit 0
